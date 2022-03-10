@@ -65,8 +65,8 @@
                                     <h5 class="card-title">${data.brand}</h5>
                                     <p class="card-text">${data.price}€</p>
                                     <p class="card-text">${data.description}</p>
-                                    <a href="" class="btn btn-primary">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="" class="btn btn-primary onclick="toEdit()">Edit</a>
+                                    <a href="" class="btn btn-danger" onclick="toDelete()">Delete</a>
                                 </div>
                              </div>
                     `
@@ -83,9 +83,36 @@
 
         getTheProduct()
 
-// call it in button 
+
+        const toEdit=async ()=>{
+// change the content for like backoffice (filled)
+            try {
+                const response= fetch("https://striveschool-api.herokuapp.com/api/product/" +id,{
+                    headers: {
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA1MTBjOWRhNDBjOTAwMTVmYzhkNmEiLCJpYXQiOjE2NDY4MzA4ODUsImV4cCI6MTY0ODA0MDQ4NX0.neLRXyKa5PRoPDvmTjfltkJkFoj16fZL7ZiL3XAM5yw"         
+                },
+                method:"PUT"
+                })
+                
+            } catch (e) {
+                console.log(e)
+            }
+
+        }
+
         const toDelete = async ()=>{
 
+            try {
+                const response= fetch("https://striveschool-api.herokuapp.com/api/product/" +id,{
+                    headers: {
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA1MTBjOWRhNDBjOTAwMTVmYzhkNmEiLCJpYXQiOjE2NDY4MzA4ODUsImV4cCI6MTY0ODA0MDQ4NX0.neLRXyKa5PRoPDvmTjfltkJkFoj16fZL7ZiL3XAM5yw"         
+                },
+                method: "DELETE"
+                }) 
+
+            } catch (e) {
+                console.log(e)
+            }
         }
 
     </script>

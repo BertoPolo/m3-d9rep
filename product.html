@@ -47,7 +47,8 @@
             try {
                 const response = await fetch("https://striveschool-api.herokuapp.com/api/product/"+id,
                 
-                {headers: {
+                {   
+                    headers: {
                 "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA1MTBjOWRhNDBjOTAwMTVmYzhkNmEiLCJpYXQiOjE2NDY4MzA4ODUsImV4cCI6MTY0ODA0MDQ4NX0.neLRXyKa5PRoPDvmTjfltkJkFoj16fZL7ZiL3XAM5yw"
                 ,'Content-Type': 'application/json'
                 },}) 
@@ -65,7 +66,7 @@
                                     <h5 class="card-title">${data.brand}</h5>
                                     <p class="card-text">${data.price}€</p>
                                     <p class="card-text">${data.description}</p>
-                                    <a href="" class="btn btn-primary onclick="toEdit()">Edit</a>
+                                    <a href="" class="btn btn-primary onclick="window.location.assign("./backOffice.html")">Edit</a>
                                     <a href="" class="btn btn-danger" onclick="toDelete()">Delete</a>
                                 </div>
                              </div>
@@ -83,25 +84,10 @@
 
         getTheProduct()
 
-
-        const toEdit=async ()=>{
-// change the content for like backoffice (filled)
-            try {
-                const response= fetch("https://striveschool-api.herokuapp.com/api/product/" +id,{
-                    headers: {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA1MTBjOWRhNDBjOTAwMTVmYzhkNmEiLCJpYXQiOjE2NDY4MzA4ODUsImV4cCI6MTY0ODA0MDQ4NX0.neLRXyKa5PRoPDvmTjfltkJkFoj16fZL7ZiL3XAM5yw"         
-                },
-                method:"PUT"
-                })
-                
-            } catch (e) {
-                console.log(e)
-            }
-
-        }
+      
 
         const toDelete = async ()=>{
-
+// works but IF STATEMENT is not working
             try {
                 const response= fetch("https://striveschool-api.herokuapp.com/api/product/" +id,{
                     headers: {
@@ -109,6 +95,12 @@
                 },
                 method: "DELETE"
                 }) 
+                if(response.ok){
+                    alert("you will never see that stuff again")
+                    window.location.assign("./mainPage.html")
+                }else {
+                    alert("Something went wrong. Please try again later")
+                }
 
             } catch (e) {
                 console.log(e)

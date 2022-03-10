@@ -151,9 +151,24 @@
             }
         }
 
-      
+        const toEdit=async ()=>{
 
+           
+            try {
+                const response= fetch("https://striveschool-api.herokuapp.com/api/product/" +id,{
+                    method:"PUT",
+                    body: JSON.stringify(myObject),
+                    headers: {
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA1MTBjOWRhNDBjOTAwMTVmYzhkNmEiLCJpYXQiOjE2NDY4MzA4ODUsImV4cCI6MTY0ODA0MDQ4NX0.neLRXyKa5PRoPDvmTjfltkJkFoj16fZL7ZiL3XAM5yw"         
+                },
+                method:"PUT"
+                })
+                
+            } catch (e) {
+                console.log(e)
+            }
 
+        }
 
     </script>
 </body>

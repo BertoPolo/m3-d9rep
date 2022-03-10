@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TroncoMovil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <style>
+        body{
+            background: rgb(77, 97, 116);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">TroncoMovil</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="./mainPage.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./M3-D8.html">Back Office</a>
+            </li>
+            
+        </div>
+      </nav>
+
+
+      <h5 class="mt-4">Welcome to this shop</h5>
+
+      <h5>Style is ugly ,the prices are better</h5>
+
+
+     
+
+    <div class="container">
+        <div class="row" id="theRow">
+            
+        </div>
+    </div>
+
+    <script>
+        const rowToFill = document.getElementById("theRow")
+
+        const getTheElements=async()=>{
+
+            try {
+                const response = await fetch("https://striveschool-api.herokuapp.com/api/product/",
+                
+                {headers: {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA1MTBjOWRhNDBjOTAwMTVmYzhkNmEiLCJpYXQiOjE2NDY4MzA4ODUsImV4cCI6MTY0ODA0MDQ4NX0.neLRXyKa5PRoPDvmTjfltkJkFoj16fZL7ZiL3XAM5yw"
+            ,'Content-Type': 'application/json'
+            },}) 
+                const data = await response.json()
+
+                console.log(data)
+
+                data.map((element)=>{
+                    return(
+                        rowToFill.innerHTML+=`
+                        
+                      <div class="col mt-4">
+                            <div class="card" style="width: 18rem;">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRel-4YeqVOjBCKBUWSn65HwXhU6F5KYcWnGw&usqp=CAU" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">${element.name}</h5>
+                                    <p class="card-text">${element.price}€</p>
+                                    <a href="./product.html?id=${element._id}" class="btn btn-primary">Details</a>
+                                </div>
+                             </div>
+                      </div>
+                        `
+
+                    )
+                })
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        getTheElements()
+    </script>
+</body>
+</html>
